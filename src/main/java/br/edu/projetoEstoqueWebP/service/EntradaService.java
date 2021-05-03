@@ -50,7 +50,6 @@ public class EntradaService {
     
     public Entrada save(Entrada en){
              
-        verificaProdutoEntrada(en);
         try{
             return repo.save(en);
             } catch(Exception e){
@@ -94,14 +93,5 @@ public class EntradaService {
             }catch(Exception e){
                 throw new RuntimeException("Falha ao deletar a Entrada");
             }
-        }
-         
-    private void verificaProdutoEntrada(Entrada e){
-             
-        if(!e.getProduto().getEntradas().isEmpty()){
-                
-            throw new RuntimeException("Produto já efetuou entrada.");
-        }                
-    }
-     
+        }             
 }
