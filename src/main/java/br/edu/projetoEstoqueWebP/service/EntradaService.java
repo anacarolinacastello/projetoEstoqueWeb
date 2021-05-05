@@ -49,7 +49,8 @@ public class EntradaService {
     
     
     public Entrada save(Entrada en){
-             
+        
+        verificaProdutoEntrada(en.getProduto());
         try{
             return repo.save(en);
             } catch(Exception e){
@@ -68,11 +69,9 @@ public class EntradaService {
     public Entrada update(Entrada ee){
              
         Entrada obj = findById(ee.getId());
+        verificaProdutoEntrada(ee.getProduto());
         try {
-            ee.setAlocacao(ee.getAlocacao());
-            ee.setFuncionarioresp(ee.getFuncionarioresp());
             ee.setDataHoraEntrada(obj.getDataHoraEntrada());
-            ee.setProduto(ee.getProduto());
             return repo.save(ee);
             }catch (Exception e) {
                 Throwable t = e;
@@ -93,5 +92,13 @@ public class EntradaService {
             }catch(Exception e){
                 throw new RuntimeException("Falha ao deletar a Entrada");
             }
-        }             
+        }
+    
+    private void verificaProdutoEntrada(Produto p){
+             
+        if(!p.getEntradas().isEmpty()){
+                
+            throw new RuntimeException("Produto já efetuou entrada.");
+        }                
+    }
 }

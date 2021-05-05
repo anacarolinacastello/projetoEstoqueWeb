@@ -18,17 +18,17 @@
             
            <div class="card" th:each="entrada : ${entradas}">
                <div style="margin-top: 20px;margin-left:10px">
-                    <div card="card-body">
+                    <div class="card-body">
                         <h5 class="card-title" th:text="${entrada.id}"></h5>
                     </div>
-                    <div card="card-body">
+                    <div class="card-body">
                         <div class="card-text" th:text="'Funcionário Responsável: ' + ${entrada.funcionarioresp.nome}"/>
                         <div class="card-text" th:text="'Produto: ' + ${entrada.produto.nome}"/>
-                        <div class="card-text" th:text="'Alocação: ' + ${entrada.alocacao.corredor}+'/'+ ${entrada.alocacao.corredor}"/>
+                        <div class="card-text" th:text="'Alocação: ' + ${entrada.alocacao.corredor}+'/'+ ${entrada.alocacao.estante}"/>
                         <div th:text="'Data/Hora Entrada: ' + ${entrada.dataHoraEntrada.get(5)+'/'+(entrada.dataHoraEntrada.get(2)+1)+'/'+entrada.dataHoraEntrada.get(1)}"/>
                     </div>
                 
-                    <div card="card-body" style="margin-top: 5px; margin-bottom: 10px ">
+                    <div class="card-body" style="margin-top: 5px; margin-bottom: 10px ">
 
                         <a th:href="@{'~/entradas/entrada/'+${entrada.id}}" class="btn btn-warning">Editar</a>
                         <a th:href="@{'~/entradas/'+${entrada.id}+'/deletar'}"  class="btn btn-danger" onclick=" return confirm('Confirmar exclusão ?')">Excluir</a>

@@ -84,7 +84,7 @@ public class ProdutoService {
     public void delete(Long id) {
            
         Produto obj = findById(id);
-         //  verificaExclusãoProdutosComEntrada(obj);
+        verificaExclusãoProdutosComEntrada(obj);
         try {
             repo.delete(obj);
         } catch (Exception e) {
@@ -93,5 +93,14 @@ public class ProdutoService {
         }
 
     }
+
+    private void verificaExclusãoProdutosComEntrada(Produto p) {
         
+        if(p.getEntradas().isEmpty()){
+        
+            throw new RuntimeException("Não é possível excluir produtos com entradas"); 
+        }
+    }
+    
+               
 }

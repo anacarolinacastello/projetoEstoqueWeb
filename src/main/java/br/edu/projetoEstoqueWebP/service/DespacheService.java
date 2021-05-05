@@ -65,10 +65,7 @@ public class DespacheService {
              
         Despache obj = findById(d.getId());
         try {
-            d.setLocalDeDespache(d.getLocalDeDespache());
-            d.setFuncionarioresp(d.getFuncionarioresp());
             d.setDataHoraDespache(obj.getDataHoraDespache());
-            d.setProduto(d.getProduto());
             return repo.save(d);
         }catch (Exception e) {
             Throwable t = e;
