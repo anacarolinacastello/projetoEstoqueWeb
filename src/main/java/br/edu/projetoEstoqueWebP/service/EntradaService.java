@@ -69,7 +69,6 @@ public class EntradaService {
     public Entrada update(Entrada ee){
              
         Entrada obj = findById(ee.getId());
-        verificaProdutoEntrada(ee.getProduto());
         try {
             ee.setDataHoraEntrada(obj.getDataHoraEntrada());
             return repo.save(ee);
