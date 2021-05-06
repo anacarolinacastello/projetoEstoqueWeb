@@ -18,25 +18,26 @@
             
            <div class="card" th:each="produto : ${produtos}">
                <div style="margin-top: 20px;margin-left:10px">
-                    <div card="card-body">
+                    <div class="card-body">
                         <h5 class="card-title" th:text="${produto.nome}"></h5>
                     </div>
-                    <div card="card-body">
+                    <div class="card-body">
                         <div class="card-text" th:text="'Categoria: ' + ${produto.categoria}"/>
                         <div class="card-text" th:text="'Código: ' + ${produto.codigo}"/>
                         <div class="card-text" th:text="'Peso: ' + ${produto.peso+' gramas'}"/>
 
                      </div>
-                    <div card="card-body" style="margin-top: 5px; margin-bottom: 10px ">
+                    <div class="card-body" style="margin-top: 5px; margin-bottom: 10px ">
                          
                          <a th:href="@{'~/produtos/produto/'+${produto.id}}" class="btn btn-warning">Editar</a>
-                        <a th:href="@{'~/produtos/'+${produto.id}+'/deletar'}"  class="btn btn-danger" onclick=" return confirm('Confirmar exclusão ?')">Excluir</a>
+                        <a th:href="@{'~/produtos/'+${produto.id}+'/deletar'}"  class="btn btn-danger" onclick=" return confirm('Confirmar exclusão ?')">Excluir</a>       
                     </div>
                     
                 </div>
             </div>
                     
         </div>
+                   
             
 
         <div th:replace="~{fragmentos :: imports-js}"/>

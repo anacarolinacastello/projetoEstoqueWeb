@@ -1,6 +1,7 @@
 package br.edu.projetoEstoqueWebP.repository;
 
 import br.edu.projetoEstoqueWebP.model.Entrada;
+import br.edu.projetoEstoqueWebP.model.Produto;
 import java.util.Calendar;
 import java.util.List;
 import org.springframework.data.domain.Pageable;
@@ -15,5 +16,7 @@ public interface EntradaRepository extends JpaRepository<Entrada, Long>{
     public List<Entrada> findByProdutoId(Long produtoId, Pageable page);
     
     public Entrada findByDataHoraEntrada(Calendar dataHoraEntrada);
+
+    public List<Entrada> findByProduto(Produto p);
 
 }

@@ -1,7 +1,9 @@
 package br.edu.projetoEstoqueWebP.service;
 
 import br.edu.projetoEstoqueWebP.exception.NotFoundException;
+import br.edu.projetoEstoqueWebP.model.Entrada;
 import br.edu.projetoEstoqueWebP.model.Produto;
+import br.edu.projetoEstoqueWebP.repository.EntradaRepository;
 import br.edu.projetoEstoqueWebP.repository.ProdutoRepository;
 import java.util.List;
 import java.util.Optional;
@@ -15,6 +17,9 @@ public class ProdutoService {
     
     @Autowired
     private ProdutoRepository repo;
+    @Autowired
+    private EntradaRepository repoEntrada;
+    
     
     public List<Produto> findAll(int page, int size){
           Pageable p = PageRequest.of(page, size);
@@ -84,7 +89,7 @@ public class ProdutoService {
     public void delete(Long id) {
            
         Produto obj = findById(id);
-        verificaExclusãoProdutosComEntrada(obj);
+        verificaProdutoEntrada(obj);
         try {
             repo.delete(obj);
         } catch (Exception e) {
@@ -96,10 +101,17 @@ public class ProdutoService {
 
     private void verificaExclusãoProdutosComEntrada(Produto p) {
         
-        if(p.getEntradas().isEmpty()){
+        if(!p.getEntradas().isEmpty()){
         
             throw new RuntimeException("Não é possível excluir produtos com entradas"); 
         }
+    }
+    private void verificaProdutoEntrada(Produto p){
+             
+         List<Entrada> result = repoEntrada.findByProduto(p);
+        if (!result.isEmpty()) {
+            throw new RuntimeException("Produto já efetuou entrada.");
+        }             
     }
     
                

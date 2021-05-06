@@ -74,6 +74,7 @@ public class FuncionarioRespViewController {
     @GetMapping(path = "/funcionarioResp/{id}")
     public String alterar(@PathVariable("id") Long id,Model model) {
         model.addAttribute("funcionarioResp", service.findById(id));
+        model.addAttribute("permissoes",permissaoRepo.findAll());
         return "formFuncionarioResp";
     }
 

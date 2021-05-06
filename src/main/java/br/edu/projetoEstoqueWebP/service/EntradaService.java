@@ -96,9 +96,9 @@ public class EntradaService {
     
     private void verificaProdutoEntrada(Produto p){
              
-        if(!p.getEntradas().isEmpty()){
-                
+         List<Entrada> result = repo.findByProduto(p);
+        if (!result.isEmpty()) {
             throw new RuntimeException("Produto já efetuou entrada.");
-        }                
+        }             
     }
 }
