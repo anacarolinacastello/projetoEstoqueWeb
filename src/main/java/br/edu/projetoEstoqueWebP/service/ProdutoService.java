@@ -98,19 +98,11 @@ public class ProdutoService {
         }
 
     }
-
-    private void verificaExclusãoProdutosComEntrada(Produto p) {
-        
-        if(!p.getEntradas().isEmpty()){
-        
-            throw new RuntimeException("Não é possível excluir produtos com entradas"); 
-        }
-    }
     private void verificaProdutoEntrada(Produto p){
              
          List<Entrada> result = repoEntrada.findByProduto(p);
         if (!result.isEmpty()) {
-            throw new RuntimeException("Produto já efetuou entrada.");
+            throw new RuntimeException("Não é possível excluir produtos com entradas");
         }             
     }
     
